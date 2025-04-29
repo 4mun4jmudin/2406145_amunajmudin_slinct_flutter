@@ -117,27 +117,45 @@ class HomePage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-            crossAxisSpacing: 12.0,
-            mainAxisSpacing: 12.0,
-            childAspectRatio: 0.9,
+      body: Stack(
+        children: [
+          // Background online
+          Positioned.fill(
+            child: Image.network(
+              'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+              fit: BoxFit.cover,
+            ),
           ),
-          itemCount: apps.length,
-          itemBuilder: (context, index) {
-            final app = apps[index];
-            return _buildAppCard(
-              context,
-              title: app['title'],
-              icon: app['icon'],
-              color: app['color'],
-              destination: app['destination'],
-            );
-          },
-        ),
+
+          Positioned.fill(
+            child: Container(
+              color: Colors.black.withOpacity(0.3),
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                crossAxisSpacing: 12.0,
+                mainAxisSpacing: 12.0,
+                childAspectRatio: 0.9,
+              ),
+              itemCount: apps.length,
+              itemBuilder: (context, index) {
+                final app = apps[index];
+                return _buildAppCard(
+                  context,
+                  title: app['title'],
+                  icon: app['icon'],
+                  color: app['color'],
+                  destination: app['destination'],
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -158,8 +176,15 @@ class HomePage extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: color,
+          color: color.withOpacity(0.85),
           borderRadius: BorderRadius.circular(12.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.15),
+              blurRadius: 6,
+              offset: const Offset(2, 4),
+            ),
+          ],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -173,6 +198,13 @@ class HomePage extends StatelessWidget {
                 color: Colors.white,
                 fontSize: 12.0,
                 fontWeight: FontWeight.bold,
+                shadows: [
+                  Shadow(
+                    color: Colors.black54,
+                    offset: Offset(1, 1),
+                    blurRadius: 2,
+                  ),
+                ],
               ),
             ),
           ],
