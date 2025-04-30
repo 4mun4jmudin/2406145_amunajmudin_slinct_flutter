@@ -37,7 +37,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Data untuk aplikasi
     final List<Map<String, dynamic>> apps = [
       {
         'title': 'On Screen',
@@ -119,7 +118,6 @@ class HomePage extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          // Background online
           Positioned.fill(
             child: Image.network(
               'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
